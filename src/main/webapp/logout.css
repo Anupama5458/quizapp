@@ -1,0 +1,134 @@
+:root {
+    --primary-color: #3498db;
+    --danger-color: #e74c3c;
+    --text-color: #333;
+    --bg-color: #f9f9f9;
+    --card-bg: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --hover-shadow: rgba(0, 0, 0, 0.15);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.confirmation-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px var(--shadow-color);
+    text-align: center;
+    animation: fadeIn 0.5s ease-in-out;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.confirmation-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 28px var(--hover-shadow);
+}
+
+.logout-icon {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+h2 {
+    color: var(--text-color);
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 25px;
+    font-size: 0.95rem;
+}
+
+.confirm-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+}
+
+form {
+    width: 100%;
+}
+
+button {
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+button.yes {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+button.yes:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+}
+
+button.no {
+    background-color: white;
+    color: var(--text-color);
+    border: 1px solid #ddd;
+}
+
+button.no:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-2px);
+}
+
+.footer {
+    margin-top: 40px;
+    color: #999;
+    font-size: 0.8rem;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 480px) {
+    .confirmation-container {
+        padding: 20px;
+    }
+
+    button {
+        padding: 10px 15px;
+    }
+}

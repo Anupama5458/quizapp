@@ -1,0 +1,207 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: #f4f4f4;
+   }
+
+.container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* left side*/
+.left{
+    flex: 1;
+    background: url("images/blue_light.jpg") no-repeat center center;
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align items: center;
+    text-align: center;
+    padding: 40px;
+    height: 100%;
+}
+
+.left h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.left span{
+   color: #ffdd57;
+}
+
+.left p{
+   font-size: 1.2rem;
+   opacity: 0.9;
+}
+
+.illustrations{
+   width:60%;
+   margin-top: 20px;
+}
+
+/* right side*/
+.right {
+  flex: 1;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.company-logo {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.company-logo img {
+  max-width: 130px;
+  height: auto;
+}
+
+.form-box {
+  width: 100%;
+  max-width: 350px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  width: 100%;
+}
+
+/* form fields*/
+.input {
+  width:100%;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+input[type="email"] {
+  margin-bottom: 20px;
+}
+input[type = "password"] {
+   margin-top: 20px;
+}
+
+.register {
+  display: inline-block;
+  width: auto;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background: #ffdd57;
+  color: #333;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.register:hover {
+  background: #ffc107;
+}
+
+p a {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+p a:hover {
+   text-decoration: underline;
+}
+
+/*Animation */
+.fade-in {
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+.slide- in {
+  animation: slideIn 1.2s ease-in-out;
+}
+
+/* Add this to your existing CSS file */
+.message-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 350px;
+    animation: slideInRight 0.5s ease-out;
+}
+
+.error-message {
+    background-color: rgba(255, 99, 71, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 14px;
+}
+
+.success-message {
+    background-color: rgba(46, 204, 113, 0.9);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 10px;
+    position: relative;
+    font-size: 14px;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translate(0); }
+}
+
+@keyframes slideIn {
+  from{ opacity: 0; transform: translateX(20px); }
+  to{ opacity: 1; transform: translateX(0); }
+}
+
+
+
+

@@ -1,0 +1,341 @@
+/* --- Base Styles and Variables (Copied from admin.css) --- */
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary-color: #334155;
+    --background-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #0ea5e9;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981;
+    --success-hover: #059669;
+    --warning-color: #f59e0b; /* Color for unattempted */
+    --warning-light-bg: #fffbeb; /* Lighter bg for unattempted */
+    --warning-border: #fbbf24;
+    --danger-light-bg: #fee2e2; /* Lighter bg for incorrect */
+    --danger-border: #fca5a5;
+    --success-light-bg: #ecfdf5; /* Lighter bg for correct */
+    --success-border: #a7f3d0;
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+
+    /* Define heights for fixed elements */
+    --header-height: 70px; /* Adjust as needed */
+    --footer-height: 50px; /* Adjust based on your included footer.jsp */
+    --sidebar-width: 280px;
+    --wrapper-padding: 24px;
+    --wrapper-gap: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
+}
+
+/* --- Fixed/Sticky Layout Styles (Copied from admin.css logic) --- */
+
+/* Header Styles - Fixed */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    height: var(--header-height);
+    padding: 0 var(--wrapper-padding);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Header Content Styles */
+.admin-profile { display: flex; align-items: center; }
+.profile-icon { width: 42px; height: 42px; background-color: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: default; }
+.admin-name { font-size: 1.2rem; font-weight: 500; letter-spacing: 0.5px; }
+.logout-form { display: inline-block; }
+.logout-btn { background-color: var(--danger-color); color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 500; letter-spacing: 0.5px; transition: var(--transition); }
+.logout-btn:hover { background-color: var(--danger-hover); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: var(--wrapper-padding);
+    gap: var(--wrapper-gap);
+    align-items: flex-start;
+}
+
+/* Sidebar Styles - Sticky Layout + Admin Appearance */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: var(--card-shadow);
+
+    /* Sticky Positioning */
+    position: sticky;
+    top: calc(var(--header-height) + var(--wrapper-padding));
+    max-height: calc(100vh - var(--header-height) - var(--footer-height) - (2 * var(--wrapper-padding)));
+    overflow-y: auto;
+}
+
+/* Sidebar Navigation Content Styles */
+.sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+.sidebar-link { display: flex; align-items: center; text-decoration: none; color: var(--text-color); padding: 14px 18px; border-radius: 8px; transition: var(--transition); font-weight: 500; }
+.sidebar-link:hover { background-color: var(--accent-color); color: white; transform: translateX(5px); }
+.sidebar-link.active { background-color: var(--primary-color); color: white; }
+.link-icon { margin-right: 14px; font-size: 1.4rem; display: inline-flex; align-items: center; justify-content: center; }
+
+
+/* Main Content Area */
+.admin-main-content {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Footer Styles - Fixed & Black */
+.admin-footer {
+    background-color: #000000; /* Black background */
+    color: white;
+    height: var(--footer-height);
+    padding: 0 var(--wrapper-padding);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.admin-footer p { margin: 0; font-size: 0.9rem; }
+
+
+/* --- Quiz Result Page Specific Content Styles (Adapted) --- */
+
+/* Container for cards inside main content */
+.dashboard-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Styling for the main result card */
+.content-card.quiz-result-page {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 32px;
+    width: 100%;
+    border-top: 5px solid var(--primary-color); /* Admin card style */
+    max-width: 800px; /* Limit width for readability */
+    margin: 0 auto; /* Center the card */
+}
+
+.content-card.quiz-result-page h2 {
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 1.8rem; /* Adjusted size */
+    font-weight: 700;
+}
+
+/* Result Cards Container */
+.result-cards {
+    display: flex;
+    justify-content: space-around; /* Spread cards evenly */
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    gap: 20px; /* Consistent gap */
+}
+
+/* Individual Result Card */
+.result-card {
+    flex: 1; /* Allow cards to grow */
+    min-width: 150px; /* Minimum width before wrapping */
+    padding: 20px; /* More padding */
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+    transition: transform 0.3s ease;
+    border-width: 1px; /* Ensure border width is set */
+    border-style: solid; /* Ensure border style is set */
+}
+
+.result-card:hover {
+    transform: translateY(-3px); /* Subtle hover effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+}
+
+.result-card h3 {
+    margin-bottom: 10px;
+    font-size: 1rem; /* Slightly smaller heading */
+    font-weight: 600;
+}
+
+.result-card p {
+    font-size: 2rem; /* Larger number */
+    font-weight: 700; /* Bolder number */
+    margin: 0;
+    line-height: 1; /* Adjust line height */
+}
+
+/* Card colors using theme variables */
+.result-card.correct {
+    background-color: var(--success-light-bg);
+    border-color: var(--success-border);
+}
+.result-card.correct h3 { color: var(--success-color); }
+.result-card.correct p { color: var(--success-color); }
+
+.result-card.incorrect {
+    background-color: var(--danger-light-bg);
+    border-color: var(--danger-border);
+}
+.result-card.incorrect h3 { color: var(--danger-color); }
+.result-card.incorrect p { color: var(--danger-color); }
+
+.result-card.unattempted {
+    background-color: var(--warning-light-bg);
+    border-color: var(--warning-border);
+}
+.result-card.unattempted h3 { color: var(--warning-color); }
+.result-card.unattempted p { color: var(--warning-color); }
+
+
+/* Final Score Text */
+.final-score {
+    text-align: center;
+    font-size: 1.3rem; /* Larger overall score text */
+    margin-bottom: 30px; /* More space below score */
+    color: var(--secondary-color);
+}
+
+.final-score strong {
+    color: var(--primary-color); /* Use primary color for score */
+    font-size: 1.8rem; /* Larger score number */
+    font-weight: 700;
+}
+
+/* Action Footer for Back Button */
+.action-footer {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+    margin-top: 10px; /* Adjust spacing */
+}
+
+/* General Action Button Style */
+.action-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    transition: var(--transition);
+}
+.action-button:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Back Home Button Style */
+.action-button.back-home-btn {
+    background-color: var(--secondary-color);
+    color: white;
+}
+.action-button.back-home-btn:hover {
+     background-color: #475569; /* Darker secondary */
+}
+
+/* Error Message Style */
+.error-message {
+    color: var(--danger-color);
+    background-color: var(--danger-light-bg);
+    border: 1px solid var(--danger-border);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* --- Responsive Design (Adapted from admin.css) --- */
+@media screen and (max-width: 1024px) {
+    .dashboard-wrapper { padding: 16px; gap: 16px; }
+     .admin-sidebar {
+        width: 240px;
+        top: calc(var(--header-height) + 16px);
+        max-height: calc(100vh - var(--header-height) - var(--footer-height) - 32px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Stack layout */
+    .dashboard-wrapper { flex-direction: column; padding: 16px; gap: 16px; }
+    .admin-sidebar { width: 100%; position: static; max-height: none; overflow-y: visible; margin-bottom: 16px; }
+    .sidebar-link { padding: 12px 16px; }
+
+    .content-card.quiz-result-page { padding: 24px; } /* Reduce padding */
+    .result-cards { flex-direction: column; /* Stack result cards */ }
+    .result-card { min-width: none; /* Remove min-width */ }
+    .final-score { font-size: 1.2rem; }
+    .final-score strong { font-size: 1.6rem; }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header, .admin-footer { padding: 0 16px; }
+    .profile-icon { width: 36px; height: 36px; }
+    .admin-name { font-size: 1rem; }
+    .logout-btn { padding: 8px 14px; }
+    .content-card.quiz-result-page { padding: 16px; }
+    .content-card.quiz-result-page h2 { font-size: 1.5rem; }
+    .result-card { padding: 15px; }
+    .result-card h3 { font-size: 0.95rem; }
+    .result-card p { font-size: 1.8rem; }
+    .final-score { font-size: 1.1rem; }
+    .final-score strong { font-size: 1.5rem; }
+    .action-button { padding: 8px 16px; font-size: 0.95rem; }
+}

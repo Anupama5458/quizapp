@@ -1,0 +1,289 @@
+/* --- Base Styles and Variables (Copied from admin.css) --- */
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary-color: #334155;
+    --background-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #0ea5e9;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981;
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+
+    /* Define heights for fixed elements */
+    --header-height: 70px; /* Adjust as needed */
+    --footer-height: 50px; /* Adjust based on your included footer.jsp */
+    --sidebar-width: 280px;
+    --wrapper-padding: 24px;
+    --wrapper-gap: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
+}
+
+/* --- Fixed/Sticky Layout Styles (Copied from admin.css logic) --- */
+
+/* Header Styles - Fixed */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    height: var(--header-height);
+    padding: 0 var(--wrapper-padding);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Header Content Styles */
+.admin-profile { display: flex; align-items: center; }
+.profile-icon { width: 42px; height: 42px; background-color: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: default; }
+.admin-name { font-size: 1.2rem; font-weight: 500; letter-spacing: 0.5px; }
+.logout-form { display: inline-block; }
+.logout-btn { background-color: var(--danger-color); color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 500; letter-spacing: 0.5px; transition: var(--transition); }
+.logout-btn:hover { background-color: var(--danger-hover); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: var(--wrapper-padding);
+    gap: var(--wrapper-gap);
+    align-items: flex-start;
+}
+
+/* Sidebar Styles - Sticky Layout + Admin Appearance */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: var(--card-shadow);
+
+    /* Sticky Positioning */
+    position: sticky;
+    top: calc(var(--header-height) + var(--wrapper-padding));
+    max-height: calc(100vh - var(--header-height) - var(--footer-height) - (2 * var(--wrapper-padding)));
+    overflow-y: auto;
+}
+
+/* Sidebar Navigation Content Styles */
+.sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+.sidebar-link { display: flex; align-items: center; text-decoration: none; color: var(--text-color); padding: 14px 18px; border-radius: 8px; transition: var(--transition); font-weight: 500; }
+.sidebar-link:hover { background-color: var(--accent-color); color: white; transform: translateX(5px); }
+.sidebar-link.active { background-color: var(--primary-color); color: white; }
+.link-icon { margin-right: 14px; font-size: 1.4rem; display: inline-flex; align-items: center; justify-content: center; }
+
+
+/* Main Content Area */
+.admin-main-content {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Footer Styles - Fixed & Black */
+.admin-footer {
+    background-color: #000000; /* Black background */
+    color: white;
+    height: var(--footer-height);
+    padding: 0 var(--wrapper-padding);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.admin-footer p { margin: 0; font-size: 0.9rem; }
+
+
+/* --- User History Specific Content Styles (Adapted) --- */
+
+/* Container for cards inside main content */
+.dashboard-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Styling for the main history card */
+.content-card.quiz-history {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 32px;
+    width: 100%;
+    /* Removed text-align: center; */
+    border-top: 5px solid var(--primary-color); /* Admin card style */
+    /* Removed margin-left/margin-bottom */
+}
+
+.content-card.quiz-history h1 {
+    color: var(--primary-color);
+    margin-bottom: 24px; /* More space */
+    font-size: 1.8rem; /* Slightly smaller H1 */
+    font-weight: 700;
+    text-align: center; /* Center heading */
+    position: relative;
+    padding-bottom: 12px;
+}
+
+/* Optional: Add underline like admin cards */
+.content-card.quiz-history h1::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 3px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto; /* Keep horizontal scroll on small screens */
+    border-radius: 8px; /* Optional: round corners for the wrapper */
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); */ /* Optional subtle shadow */
+}
+
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px; /* If no wrapper radius */
+    overflow: hidden; /* If using radius on table */
+}
+
+.history-table th {
+    background-color: var(--primary-color); /* Admin theme header */
+    color: white;
+    padding: 16px; /* Admin theme padding */
+    text-align: left;
+    font-weight: 500;
+    letter-spacing: 0.5px; /* Admin theme spacing */
+}
+
+.history-table td {
+    padding: 14px 16px; /* Admin theme padding */
+    border-bottom: 1px solid #e2e8f0; /* Admin theme border */
+}
+
+.history-table tbody tr {
+    transition: var(--transition);
+}
+
+.history-table tbody tr:hover {
+    background-color: rgba(226, 232, 240, 0.5); /* Admin theme hover */
+}
+
+.history-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Style for 'No data' row */
+.history-table td.no-data {
+    text-align: center;
+    color: var(--text-light);
+    padding: 40px 20px;
+    font-style: italic;
+    background-color: transparent !important; /* Ensure no hover effect */
+}
+
+
+.score {
+    /* Use admin accent color for score */
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px; /* Pill shape */
+    font-weight: 500;
+    min-width: 60px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* Optional Back Button Styling (if added in JSP) */
+.action-footer { display: flex; justify-content: center; padding: 16px 0; margin-top: 24px; /* Space above button */ }
+.back-link { display: inline-flex; align-items: center; text-decoration: none; color: var(--accent-color); font-weight: 500; padding: 10px 20px; border-radius: 8px; transition: var(--transition); border: 1px solid var(--accent-color); }
+.back-link:hover { background-color: var(--accent-color); color: white; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.back-link::before { content: '←'; margin-right: 8px; font-size: 1.2rem; }
+
+
+/* --- Responsive Design (Adapted from admin.css) --- */
+@media screen and (max-width: 1024px) {
+    .dashboard-wrapper { padding: 16px; gap: 16px; }
+     .admin-sidebar {
+        width: 240px;
+        top: calc(var(--header-height) + 16px);
+        max-height: calc(100vh - var(--header-height) - var(--footer-height) - 32px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Stack layout */
+    .dashboard-wrapper { flex-direction: column; padding: 16px; gap: 16px; }
+    .admin-sidebar { width: 100%; position: static; max-height: none; overflow-y: visible; margin-bottom: 16px; }
+    .sidebar-link { padding: 12px 16px; }
+
+    /* Adjust table padding for smaller screens */
+    .history-table th { padding: 12px 10px; }
+    .history-table td { padding: 10px 10px; font-size: 0.9rem; }
+    .score { padding: 3px 10px; font-size: 0.85rem; }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header, .admin-footer { padding: 0 16px; }
+    .profile-icon { width: 36px; height: 36px; }
+    .admin-name { font-size: 1rem; }
+    .logout-btn { padding: 8px 14px; }
+    .content-card.quiz-history h1 { font-size: 1.6rem; }
+    .content-card.quiz-history { padding: 20px; } /* Reduce card padding */
+     .history-table th { padding: 10px 8px; font-size: 0.85rem;}
+     .history-table td { padding: 8px 8px; font-size: 0.85rem; }
+}

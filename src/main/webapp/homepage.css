@@ -1,0 +1,257 @@
+/* --- Base Styles and Variables (Copied from admin.css) --- */
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary-color: #334155;
+    --background-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #0ea5e9;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981; /* Kept for potential future use */
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+
+    /* Define heights for fixed elements */
+    --header-height: 70px; /* Adjust as needed */
+    --footer-height: 50px; /* Adjust based on your included footer.jsp */
+    --sidebar-width: 280px;
+    --wrapper-padding: 24px;
+    --wrapper-gap: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    /* Add padding to body for fixed header/footer */
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
+}
+
+/* --- Fixed/Sticky Layout Styles (Copied from admin.css logic) --- */
+
+/* Header Styles - Fixed */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    height: var(--header-height);
+    padding: 0 var(--wrapper-padding);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px; /* Match wrapper max-width */
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Header Content Styles (User profile icon, name, logout button) */
+.admin-profile { display: flex; align-items: center; }
+.profile-icon { width: 42px; height: 42px; background-color: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: default; /* No longer clickable */ }
+.admin-name { font-size: 1.2rem; font-weight: 500; letter-spacing: 0.5px; }
+.logout-form { display: inline-block; }
+.logout-btn { background-color: var(--danger-color); color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 500; letter-spacing: 0.5px; transition: var(--transition); }
+.logout-btn:hover { background-color: var(--danger-hover); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: var(--wrapper-padding);
+    gap: var(--wrapper-gap);
+    align-items: flex-start; /* Align sidebar and main content to top */
+}
+
+/* Sidebar Styles - Sticky Layout + Admin Appearance */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 16px; /* Padding from admin style */
+    box-shadow: var(--card-shadow);
+
+    /* Sticky Positioning */
+    position: sticky;
+    top: calc(var(--header-height) + var(--wrapper-padding));
+    max-height: calc(100vh - var(--header-height) - var(--footer-height) - (2 * var(--wrapper-padding)));
+    overflow-y: auto;
+}
+
+/* Sidebar Navigation Content Styles (from admin.css) */
+.sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+.sidebar-link { display: flex; align-items: center; text-decoration: none; color: var(--text-color); padding: 14px 18px; border-radius: 8px; transition: var(--transition); font-weight: 500; }
+.sidebar-link:hover { background-color: var(--accent-color); color: white; transform: translateX(5px); }
+.sidebar-link.active { background-color: var(--primary-color); color: white; } /* Use admin's active style */
+.link-icon { margin-right: 14px; font-size: 1.4rem; display: inline-flex; align-items: center; justify-content: center; }
+
+
+/* Main Content Area */
+.admin-main-content {
+    flex-grow: 1; /* Takes remaining horizontal space */
+    min-width: 0; /* Prevent overflow in flex context */
+    display: flex; /* Optional: if direct children need flex */
+    flex-direction: column; /* Optional: stack children */
+    gap: 24px; /* Optional: gap between children */
+}
+
+/* Footer Styles - Fixed & Black */
+.admin-footer {
+    background-color: #000000; /* Black background */
+    color: white;
+    height: var(--footer-height);
+    padding: 0 var(--wrapper-padding);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.admin-footer p { margin: 0; font-size: 0.9rem; }
+
+
+/* --- Homepage Specific Content Styles (Adapted from homepage.css) --- */
+
+/* Container for cards inside main content */
+.dashboard-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Consistent gap */
+    width: 100%;
+}
+
+/* Styling for the main subject selection card */
+.content-card.subject-selection { /* Use a more specific class or content-card */
+    background-color: var(--card-bg);
+    border-radius: 12px; /* Match admin card radius */
+    box-shadow: var(--card-shadow);
+    padding: 32px; /* Match admin card padding */
+    width: 100%; /* Fill available space */
+    text-align: center;
+    border-top: 5px solid var(--primary-color); /* Add admin card border */
+}
+
+.content-card.subject-selection h1 {
+    color: var(--primary-color); /* Use admin theme color */
+    margin-bottom: 25px; /* Keep original spacing */
+    font-size: 2rem; /* Match admin welcome card */
+    font-weight: 700; /* Match admin welcome card */
+}
+
+.subject-grid {
+    display: grid;
+    /* Responsive grid: 3 cols default, 2 on medium, 1 on small */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px; /* Keep original gap */
+}
+
+/* Form wrapping each subject button */
+.subject-card-form {
+    margin: 0; /* Reset form margin */
+}
+
+/* Styling for the button acting as a card */
+.subject-card-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc; /* Lighter background */
+    border: 1px solid #e2e8f0; /* Subtle border */
+    border-radius: 10px; /* Keep original radius */
+    padding: 20px;
+    width: 100%;
+    height: 100%; /* Ensure buttons in a row have same height */
+    cursor: pointer;
+    transition: var(--transition); /* Use theme transition */
+    text-align: center;
+    color: var(--text-color); /* Use theme text color */
+}
+
+.subject-card-button:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow); /* Use theme shadow */
+    background-color: var(--accent-color); /* Use theme hover color */
+    color: white;
+    border-color: var(--accent-color);
+}
+
+.subject-card-button:hover h3 {
+    color: white; /* Change text color on hover */
+}
+
+.subject-card-button img {
+    width: 70px; /* Slightly smaller */
+    height: 70px;
+    margin-bottom: 15px;
+    object-fit: contain; /* Ensure image scales nicely */
+}
+
+.subject-card-button h3 {
+    color: var(--primary-color); /* Use theme color */
+    font-weight: 500; /* Adjust weight */
+    font-size: 1.1rem; /* Adjust size */
+    margin: 0;
+    transition: color 0.3s ease; /* Smooth color transition */
+}
+
+/* --- Responsive Design (Adapted from admin.css + homepage specifics) --- */
+@media screen and (max-width: 1024px) {
+    .dashboard-wrapper { padding: 16px; gap: 16px; }
+     .admin-sidebar {
+        width: 240px; /* Narrower sidebar */
+        top: calc(var(--header-height) + 16px);
+        max-height: calc(100vh - var(--header-height) - var(--footer-height) - 32px);
+    }
+    /* Adjust subject grid if needed */
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-wrapper { flex-direction: column; padding: 16px; gap: 16px; }
+    .admin-sidebar { width: 100%; position: static; max-height: none; overflow-y: visible; margin-bottom: 16px; }
+    .sidebar-link { padding: 12px 16px; }
+    /* Subject grid might naturally reflow, but ensure minmax works well */
+    .subject-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header, .admin-footer { padding: 0 16px; }
+    .profile-icon { width: 36px; height: 36px; }
+    .admin-name { font-size: 1rem; }
+    .logout-btn { padding: 8px 14px; }
+    .content-card.subject-selection h1 { font-size: 1.6rem; }
+    .subject-grid { gap: 15px; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); } /* Further adjust grid */
+    .subject-card-button img { width: 50px; height: 50px; margin-bottom: 10px;}
+    .subject-card-button h3 { font-size: 1rem;}
+}

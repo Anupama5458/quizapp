@@ -1,0 +1,353 @@
+/* ========================================= */
+/*  == Root Variables (from quiz_list.css) == */
+/* ========================================= */
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary-color: #334155;
+    --background-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #0ea5e9; /* Sidebar hover */
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981; /* Used for success messages & correct answer */
+    --success-hover: #059669;
+    --view-btn-color: #3b82f6;
+    --view-btn-hover: #2563eb;
+    --delete-btn-color: #ef4444;
+    --delete-btn-hover: #dc2626;
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+    --header-height: 74px; /* Approximate calculation */
+}
+
+/* ========================================= */
+/*  == Global Styles (from quiz_list.css) == */
+/* ========================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    /* Body might need to scroll if content is very long and sidebar is sticky */
+}
+
+.admin-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ========================================= */
+/*  == Header Styles (from quiz_list.css) == */
+/* ========================================= */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 16px 24px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: sticky; /* Header sticks */
+    top: 0;
+    z-index: 1000; /* High z-index */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px; /* Max width from quiz_list */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.admin-profile { display: flex; align-items: center; }
+.profile-icon {
+    width: 42px; height: 42px; background-color: var(--primary-light);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    margin-right: 12px; font-weight: bold; font-size: 18px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.admin-name { font-size: 1.2rem; font-weight: 500; letter-spacing: 0.5px; }
+.header-actions { display: flex; align-items: center; gap: 16px; }
+
+/* Style for "Back" button - uses .back-btn class */
+.back-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none; /* Match quiz_list.css */
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex; /* Use flex for vertical alignment if needed */
+    align-items: center;
+    font-size: 0.9rem; /* Match logout button font size */
+}
+.back-btn:hover {
+    background-color: #f8fafc; /* Match quiz_list.css hover */
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Logout Button styles (from quiz_list.css) */
+.logout-form { display: inline-block; } /* Keep form inline */
+.logout-btn {
+    background-color: var(--danger-color); color: white; border: none;
+    padding: 10px 18px; border-radius: 6px; cursor: pointer;
+    font-weight: 500; letter-spacing: 0.5px; transition: var(--transition);
+    font-size: 0.9rem; /* Consistent font size */
+}
+.logout-btn:hover {
+    background-color: var(--danger-hover); transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ============================================ */
+/*  == Dashboard Layout (from quiz_list.css) == */
+/* ============================================ */
+.dashboard-wrapper {
+    display: flex;
+    flex-grow: 1; /* Takes remaining vertical space */
+    max-width: 1400px; /* Match quiz_list */
+    margin: 0 auto;
+    width: 100%;
+    padding: 24px; /* Padding around sidebar/main */
+    gap: 24px; /* Gap between sidebar/main */
+}
+
+/* =========================================================== */
+/*  == Sidebar Styles (STICKY & FIT-CONTENT from quiz_list.css) == */
+/* =========================================================== */
+.admin-sidebar {
+    width: 280px; /* Standard width */
+    flex-shrink: 0; /* Prevent shrinking */
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: var(--card-shadow);
+    height: fit-content; /* **KEY CHANGE: Height based on content** */
+    position: sticky; /* **KEY CHANGE: Stick to viewport** */
+    /* Adjust top based on sticky header height + desired gap */
+    top: calc(var(--header-height) + 24px); /* e.g., 74px + 24px = 98px */
+}
+
+.sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+.sidebar-link {
+    display: flex; align-items: center; text-decoration: none;
+    color: var(--text-color); padding: 14px 18px; border-radius: 8px;
+    transition: var(--transition); font-weight: 500;
+}
+.sidebar-link:hover {
+    background-color: var(--accent-color); color: white;
+    transform: translateX(5px);
+}
+.sidebar-link.active { /* Style for the active link */
+    background-color: var(--primary-light); color: white;
+}
+.link-icon {
+    margin-right: 14px; font-size: 1.4rem; display: inline-flex;
+    align-items: center; justify-content: center; width: 24px; /* Align icons */
+}
+
+/* =============================================== */
+/*  == Main Content Styles (from quiz_list.css) == */
+/* =============================================== */
+.admin-main-content {
+    flex-grow: 1; /* Takes remaining horizontal space */
+    display: flex;
+    flex-direction: column;
+    gap: 24px; /* Gap between page header and card */
+    min-width: 0; /* Prevents content from overflowing flex container */
+}
+
+.page-header { /* Consistent page header */
+    text-align: center;
+    margin-bottom: 8px; /* Reduced margin */
+}
+.page-header h1 {
+    color: var(--primary-color); font-size: 2rem;
+    font-weight: 700; margin-bottom: 8px;
+}
+.page-header p { color: var(--text-light); font-size: 1.1rem; }
+.page-header p strong { color: var(--secondary-color); font-weight: 500; }
+
+.content-card { /* Consistent card styling */
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    width: 100%;
+    overflow: hidden; /* Prevent content spill */
+}
+
+.card-header { /* Consistent card header */
+    padding: 20px 30px;
+    background-color: rgba(241, 245, 249, 0.5); /* Light bg */
+    border-bottom: 1px solid #e2e8f0;
+    display: flex; align-items: center; gap: 12px;
+}
+.card-icon { font-size: 1.8rem; }
+.card-header h2 {
+    color: var(--secondary-color); font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.card-content { padding: 30px; } /* Consistent content padding */
+
+/* Alert Messages (copied from quiz_list.css in case needed) */
+.alert {
+    padding: 14px 20px; border-radius: 8px; margin-bottom: 24px;
+    display: flex; align-items: center; gap: 12px;
+}
+.alert-icon { font-size: 20px; }
+.success-message {
+    background-color: rgba(16, 185, 129, 0.1); color: var(--success-color);
+    border-left: 4px solid var(--success-color);
+}
+.error-message {
+    background-color: rgba(239, 68, 68, 0.1); color: var(--danger-color);
+    border-left: 4px solid var(--danger-color);
+}
+
+/* ============================================ */
+/*  == Table Styles (from quiz_list.css) ===== */
+/* ============================================ */
+.table-wrapper { /* Consistent table wrapper */
+    width: 100%;
+    overflow-x: auto; /* Horizontal scroll for table */
+    border-radius: 8px;
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.05); /* Subtle border */
+    margin-bottom: 24px; /* Space below table */
+}
+
+.quiz-table { /* Use the exact same class */
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.quiz-table th,
+.quiz-table td {
+    padding: 16px; /* Match padding */
+    border-bottom: 1px solid #e2e8f0; /* Match border */
+    vertical-align: middle; /* Align content vertically */
+}
+
+.quiz-table thead {
+    /* **KEY CHANGE: Match table header background** */
+    background-color: rgba(241, 245, 249, 0.8);
+}
+
+.quiz-table th {
+    /* **KEY CHANGE: Match table header text style** */
+    font-weight: 600;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 0.5px;
+    white-space: nowrap; /* Prevent header text wrapping */
+}
+
+.quiz-table tbody tr { transition: var(--transition); }
+
+.quiz-table tbody tr:hover {
+    /* **KEY CHANGE: Match row hover background** */
+    background-color: rgba(241, 245, 249, 0.5);
+}
+
+/* Remove bottom border from last row cells */
+.quiz-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Style for the 'Correct Answer' cell specifically */
+.correct-answer-cell {
+    color: var(--success-color); /* Green color */
+    font-weight: 500;
+}
+
+/* Style for Question column to allow wrapping */
+.quiz-table td:nth-child(2), .quiz-table th:nth-child(2) {
+    white-space: normal;
+    min-width: 250px; /* Give question space */
+}
+
+
+/* No quizzes message */
+.no-quizzes { /* Use same class as quiz_list.jsp */
+    color: var(--text-light);
+    font-style: italic;
+    text-align: center;
+    padding: 20px; /* Match padding */
+}
+
+/* Card Actions (copied from quiz_list.css in case needed) */
+.card-actions { display: flex; justify-content: center; margin-top: 20px; }
+.action-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background-color: var(--primary-light); color: white; padding: 12px 24px;
+    border-radius: 8px; text-decoration: none; font-weight: 500;
+    transition: var(--transition);
+}
+.action-link:hover {
+    background-color: var(--primary-color); transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.action-icon { font-size: 18px; }
+
+/* =================================================== */
+/*  == Footer Style (Optional - if using black footer) == */
+/* =================================================== */
+/* If you use <footer class="admin-footer"> instead of the include, add this: */
+/*
+.admin-footer {
+    background-color: #000000;
+    color: #f8f9fa;
+    text-align: center;
+    padding: 10px 0;
+    margin-top: auto; /* Pushes footer down in flex column */
+    flex-shrink: 0; /* Prevent footer from shrinking */
+    font-size: 0.9rem;
+    border-top: 1px solid #333;
+}
+*/
+
+
+/* =================================================== */
+/*  == Responsive Design (Copied from quiz_list.css) == */
+/* =================================================== */
+@media screen and (max-width: 1024px) {
+    .dashboard-wrapper { padding: 16px; gap: 16px; }
+    .card-content { padding: 20px; }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-wrapper { flex-direction: column; }
+    .admin-sidebar {
+        width: 100%; margin-bottom: 16px;
+        position: static; /* Sidebar no longer sticky on mobile */
+        top: auto; /* Reset top */
+    }
+    .header-actions { gap: 10px; }
+    .back-btn, .logout-btn { padding: 8px 12px; font-size: 14px; }
+
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header { padding: 12px 16px; }
+    .profile-icon { width: 36px; height: 36px; font-size: 16px; }
+    .admin-name { font-size: 1rem; }
+    .page-header h1 { font-size: 1.6rem; }
+    .page-header p { font-size: 1rem; }
+    .card-header { padding: 16px; }
+    .card-content { padding: 16px; }
+    .quiz-table th, .quiz-table td { padding: 12px 8px; font-size: 14px; }
+}

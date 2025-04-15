@@ -1,0 +1,380 @@
+/* --- Base Styles and Variables (Copied from admin.css) --- */
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary-color: #334155;
+    --background-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #0ea5e9;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981;
+    --success-hover: #059669; /* Added hover for success */
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+
+    /* Define heights for fixed elements */
+    --header-height: 70px; /* Adjust as needed */
+    --footer-height: 50px; /* Adjust based on your included footer.jsp */
+    --sidebar-width: 280px;
+    --wrapper-padding: 24px;
+    --wrapper-gap: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
+}
+
+/* --- Fixed/Sticky Layout Styles (Copied from admin.css logic) --- */
+
+/* Header Styles - Fixed */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    height: var(--header-height);
+    padding: 0 var(--wrapper-padding);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Header Content Styles */
+.admin-profile { display: flex; align-items: center; }
+.profile-icon { width: 42px; height: 42px; background-color: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: default; }
+.admin-name { font-size: 1.2rem; font-weight: 500; letter-spacing: 0.5px; }
+.logout-form { display: inline-block; }
+.logout-btn { background-color: var(--danger-color); color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 500; letter-spacing: 0.5px; transition: var(--transition); }
+.logout-btn:hover { background-color: var(--danger-hover); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+
+/* Dashboard Wrapper */
+.dashboard-wrapper {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: var(--wrapper-padding);
+    gap: var(--wrapper-gap);
+    align-items: flex-start;
+}
+
+/* Sidebar Styles - Sticky Layout + Admin Appearance */
+.admin-sidebar {
+    width: var(--sidebar-width);
+    flex-shrink: 0;
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: var(--card-shadow);
+
+    /* Sticky Positioning */
+    position: sticky;
+    top: calc(var(--header-height) + var(--wrapper-padding));
+    max-height: calc(100vh - var(--header-height) - var(--footer-height) - (2 * var(--wrapper-padding)));
+    overflow-y: auto;
+}
+
+/* Sidebar Navigation Content Styles */
+.sidebar-nav { display: flex; flex-direction: column; gap: 8px; }
+.sidebar-link { display: flex; align-items: center; text-decoration: none; color: var(--text-color); padding: 14px 18px; border-radius: 8px; transition: var(--transition); font-weight: 500; }
+.sidebar-link:hover { background-color: var(--accent-color); color: white; transform: translateX(5px); }
+.sidebar-link.active { background-color: var(--primary-color); color: white; }
+.link-icon { margin-right: 14px; font-size: 1.4rem; display: inline-flex; align-items: center; justify-content: center; }
+
+
+/* Main Content Area */
+.admin-main-content {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Footer Styles - Fixed & Black */
+.admin-footer {
+    background-color: #000000; /* Black background */
+    color: white;
+    height: var(--footer-height);
+    padding: 0 var(--wrapper-padding);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.admin-footer p { margin: 0; font-size: 0.9rem; }
+
+
+/* --- Instructions Page Specific Content Styles (Adapted) --- */
+
+/* Container for cards inside main content */
+.dashboard-cards {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    width: 100%;
+}
+
+/* Styling for the main instructions card */
+.content-card.instructions-page {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 32px;
+    width: 100%;
+    border-top: 5px solid var(--primary-color);
+    max-width: 1000px; /* Keep original max-width for readability */
+    margin: 0 auto; /* Center if max-width is applied */
+}
+
+.page-title {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--primary-color);
+    font-size: 2rem; /* Match admin h1 */
+    font-weight: 700;
+}
+
+.highlight {
+    color: var(--accent-color); /* Use accent color for highlight */
+    font-weight: 700;
+}
+
+/* Instructions Box */
+.instructions-section {
+    background-color: #f8fafc; /* Lighter bg */
+    border: 1px solid #e2e8f0; /* Subtle border */
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 30px;
+}
+
+.instructions-section h2 {
+    color: var(--secondary-color); /* Darker heading */
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e2e8f0; /* Lighter border */
+    padding-bottom: 10px;
+    font-size: 1.5rem; /* Adjust size */
+}
+
+.instruction-list {
+    list-style-type: none;
+    padding-left: 0; /* Remove default padding */
+}
+
+.instruction-list li {
+    padding: 8px 0; /* Adjust padding */
+    position: relative;
+    padding-left: 25px;
+    color: var(--text-color); /* Standard text color */
+}
+
+.instruction-list li::before {
+    content: "✓"; /* Checkmark or similar */
+    color: var(--success-color); /* Use success color */
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Available Quizzes Section Title */
+.section-title {
+    text-align: center;
+    color: var(--secondary-color);
+    margin-bottom: 24px;
+    font-size: 1.5rem;
+    position: relative;
+    padding-bottom: 12px;
+}
+/* Underline like admin subheading */
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background-color: var(--accent-color);
+    border-radius: 3px;
+}
+
+
+.quiz-container {
+    margin-bottom: 30px;
+}
+
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+/* Individual Quiz Card */
+.quiz-card {
+    background-color: var(--card-bg); /* White background */
+    border: 1px solid #e2e8f0; /* Subtle border */
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    transition: var(--transition);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Lighter shadow */
+}
+
+.quiz-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow); /* Use theme shadow on hover */
+    border-color: #d1d5db;
+}
+
+.quiz-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.quiz-info {
+    margin-bottom: 20px;
+    color: var(--text-light); /* Lighter text for info */
+    font-size: 0.95rem;
+}
+.quiz-info p { margin: 5px 0; }
+.info-label {
+    font-weight: 500; /* Make labels slightly bolder */
+    color: var(--secondary-color); /* Darker label color */
+}
+
+/* General Action Button Style */
+.action-button {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 1rem;
+    text-decoration: none;
+    text-align: center;
+    border: none;
+    transition: var(--transition);
+}
+
+.action-button:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Start Quiz Button */
+.action-button.start-btn {
+    width: 100%;
+    background-color: var(--success-color);
+    color: white;
+}
+
+.action-button.start-btn:hover {
+    background-color: var(--success-hover);
+}
+
+/* No Quiz Message */
+.no-quiz-message {
+    text-align: center;
+    background-color: #fff7ed; /* Light warning background */
+    color: #9a3412; /* Warning text color */
+    border: 1px solid #fed7aa; /* Warning border */
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Navigation / Back Button Area */
+.navigation.action-footer {
+    display: flex;
+    justify-content: center;
+    padding: 16px 0;
+    margin-top: 24px; /* Consistent spacing */
+}
+
+/* Back Button */
+.action-button.cancel-button {
+    background-color: var(--text-light); /* Use text-light or secondary */
+    color: white;
+}
+.action-button.cancel-button:hover {
+     background-color: var(--secondary-color);
+}
+
+
+/* --- Responsive Design (Adapted from admin.css) --- */
+@media screen and (max-width: 1024px) {
+    .dashboard-wrapper { padding: 16px; gap: 16px; }
+     .admin-sidebar {
+        width: 240px;
+        top: calc(var(--header-height) + 16px);
+        max-height: calc(100vh - var(--header-height) - var(--footer-height) - 32px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Stack layout */
+    .dashboard-wrapper { flex-direction: column; padding: 16px; gap: 16px; }
+    .admin-sidebar { width: 100%; position: static; max-height: none; overflow-y: visible; margin-bottom: 16px; }
+    .sidebar-link { padding: 12px 16px; }
+
+    .content-card.instructions-page { padding: 24px; } /* Reduce padding */
+    .quiz-grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); } /* Adjust grid */
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header, .admin-footer { padding: 0 16px; }
+    .profile-icon { width: 36px; height: 36px; }
+    .admin-name { font-size: 1rem; }
+    .logout-btn { padding: 8px 14px; }
+    .page-title { font-size: 1.6rem; }
+    .content-card.instructions-page { padding: 16px; } /* Further reduce padding */
+    .instructions-section { padding: 16px; }
+    .instructions-section h2 { font-size: 1.3rem; }
+    .instruction-list li { padding: 6px 0 6px 20px; font-size: 0.95rem; }
+    .instruction-list li::before { font-size: 16px; }
+    .section-title { font-size: 1.3rem; }
+    .quiz-grid { grid-template-columns: 1fr; gap: 15px; } /* Stack quiz cards */
+    .quiz-card { padding: 16px; }
+    .action-button { padding: 8px 16px; font-size: 0.95rem; }
+}

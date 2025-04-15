@@ -1,0 +1,231 @@
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary-color: #334155;
+    --background-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #0ea5e9;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981;
+    --success-hover: #059669;
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+
+    --header-height: 70px; /* Adjust as needed */
+    --footer-height: 50px; /* Adjust as needed */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
+}
+
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    height: var(--header-height);
+    padding: 0 24px; /* Adjust padding as needed */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex; /* To help align header-content if needed */
+    align-items: center; /* Vertically center content */
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px; /* Match wrapper max-width */
+    margin: 0 auto;
+    width: 100%;
+}
+
+.dashboard-wrapper {
+    display: flex;
+    max-width: 1400px; /* Control overall width */
+    margin: 0 auto; /* Center the wrapper */
+    padding: 24px; /* Spacing around sidebar/main content */
+    gap: 24px;
+    align-items: flex-start; /* Align items to the top */
+}
+
+.admin-sidebar {
+    width: 280px; /* Original width */
+    flex-shrink: 0; /* Prevent shrinking */
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    padding: 24px 16px;
+    box-shadow: var(--card-shadow);
+
+    position: sticky;
+    top: calc(var(--header-height) + 24px); /* Account for header height + wrapper padding */
+    max-height: calc(100vh - var(--header-height) - var(--footer-height) - 48px);
+    overflow-y: auto; /* Allow internal scrolling if content exceeds max-height */
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sidebar-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: var(--text-color);
+    padding: 14px 18px;
+    border-radius: 8px;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+.sidebar-link:hover {
+    background-color: var(--accent-color);
+    color: white;
+    transform: translateX(5px);
+}
+
+.sidebar-link.active {
+    background-color: var(--primary-light);
+    color: white;
+}
+
+.link-icon {
+    margin-right: 14px;
+    font-size: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.admin-main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    min-width: 0;
+}
+
+.admin-footer {
+    color: white; /* Example */
+    height: var(--footer-height);
+    padding: 0 24px; /* Example */
+    /* Fix to viewport */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex; /* Example alignment */
+    align-items: center; /* Example alignment */
+    justify-content: center; /* Example alignment */
+}
+.admin-footer p {
+   margin: 0;
+}
+
+.admin-profile { display: flex; align-items: center; }
+.profile-icon { width: 42px; height: 42px; background-color: var(--primary-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 12px; font-weight: bold; font-size: 18px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.admin-name { font-size: 1.2rem; font-weight: 500; letter-spacing: 0.5px; }
+.header-actions { display: flex; align-items: center; gap: 16px; }
+.logout-form { display: inline-block; /* Prevent form from taking extra space */ }
+.logout-btn { background-color: var(--danger-color); color: white; border: none; padding: 10px 18px; border-radius: 6px; cursor: pointer; font-weight: 500; letter-spacing: 0.5px; transition: var(--transition); }
+.logout-btn:hover { background-color: var(--danger-hover); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+.page-header { text-align: center; margin-bottom: 8px; }
+.page-header h1 { color: var(--primary-color); font-size: 2rem; font-weight: 700; margin-bottom: 8px; }
+.page-header p { color: var(--text-light); font-size: 1.1rem; }
+
+.content-card { background-color: var(--card-bg); border-radius: 12px; box-shadow: var(--card-shadow); width: 100%; max-width: 800px; margin: 0 auto; overflow: hidden; }
+.quiz-form-card { border-top: 5px solid var(--primary-color); }
+.card-header { padding: 20px 30px; background-color: rgba(241, 245, 249, 0.5); border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; gap: 12px; }
+.card-icon { font-size: 1.8rem; }
+.card-header h2 { color: var(--secondary-color); font-size: 1.4rem; font-weight: 600; }
+.quiz-form { padding: 30px; }
+.form-group { margin-bottom: 24px; }
+.form-group label { display: block; margin-bottom: 8px; font-weight: 500; color: var(--secondary-color); }
+.form-group input, .form-group select { width: 100%; padding: 12px 16px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 16px; transition: var(--transition); color: var(--text-color); background-color: #fff; }
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent-color); box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.2); }
+.form-group input::placeholder { color: #94a3b8; }
+.form-actions { display: flex; justify-content: space-between; gap: 16px; margin-top: 32px; }
+.submit-button { background-color: var(--success-color); color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; font-weight: 500; flex: 1; transition: var(--transition); }
+.submit-button:hover { background-color: var(--success-hover); transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.cancel-button { background-color: #e2e8f0; color: var(--text-color); border: none; padding: 12px 24px; border-radius: 8px; text-align: center; text-decoration: none; font-size: 16px; font-weight: 500; transition: var(--transition); }
+.cancel-button:hover { background-color: #cbd5e1; transform: translateY(-2px); }
+
+@media screen and (max-width: 1024px) {
+    .dashboard-wrapper {
+        padding: 16px; /* Reduce padding */
+        gap: 16px;
+    }
+     .admin-sidebar {
+        width: 240px; /* Slightly narrower sidebar */
+        top: calc(var(--header-height) + 16px);
+        max-height: calc(100vh - var(--header-height) - var(--footer-height) - 32px);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .dashboard-wrapper {
+        flex-direction: column;
+        padding: 16px;
+    }
+
+    .admin-sidebar {
+        width: 100%; /* Full width */
+        position: static; /* Remove stickiness */
+        max-height: none; /* Remove height constraint */
+        overflow-y: visible; /* Don't need internal scroll */
+        margin-bottom: 16px;
+    }
+
+    .header-actions { gap: 10px; }
+    .back-btn, .logout-btn { padding: 8px 12px; font-size: 14px; }
+    .content-card { max-width: 100%; }
+    .form-actions { flex-direction: column; }
+    .submit-button, .cancel-button { width: 100%; }
+}
+
+@media screen and (max-width: 480px) {
+    :root {
+    }
+    body {
+        padding-top: var(--header-height);
+        padding-bottom: var(--footer-height);
+    }
+    .admin-header, .admin-footer {
+        padding: 0 16px;
+    }
+
+    .profile-icon { width: 36px; height: 36px; font-size: 16px; }
+    .admin-name { display: none; /* Hide name on very small screens */ }
+    .header-content { /* Adjust content spacing if needed */ }
+    .header-actions { width: auto; /* Don't force full width */ }
+
+    .page-header h1 { font-size: 1.6rem; }
+    .page-header p { font-size: 1rem; }
+    .card-header { padding: 16px; }
+    .quiz-form { padding: 16px; }
+}

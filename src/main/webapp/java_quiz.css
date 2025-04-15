@@ -1,0 +1,349 @@
+/* --- Base Styles and Variables (Unchanged) --- */
+:root {
+    --primary-color: #1e3a8a;
+    --primary-light: #2563eb;
+    --secondary-color: #334155;
+    --background-color: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --text-light: #64748b;
+    --accent-color: #0ea5e9;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981;
+    --success-hover: #059669;
+    --warning-color: #f59e0b;
+    --grey-color: #94a3b8;
+    --card-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --transition: all 0.3s ease;
+
+    --header-height: 70px;
+    --footer-height: 50px;
+    --status-sidebar-width: 280px;
+    --wrapper-padding: 24px;
+    --wrapper-gap: 24px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    padding-top: var(--header-height);
+    padding-bottom: var(--footer-height);
+}
+
+/* --- Fixed/Sticky Layout Styles --- */
+
+/* Header Styles - Fixed (Unchanged) */
+.admin-header {
+    background-color: var(--primary-color);
+    color: white;
+    height: var(--header-height);
+    padding: 0 var(--wrapper-padding);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+}
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+.logo-container { display: flex; align-items: center; }
+.logo { height: 45px; }
+.header-actions { display: flex; align-items: center; }
+.back-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+}
+.back-btn:hover { background-color: #f8fafc; transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+
+
+/* Footer Styles - Fixed & Black (Unchanged) */
+.admin-footer {
+    background-color: #000000;
+    color: white;
+    height: var(--footer-height);
+    padding: 0 var(--wrapper-padding);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 -4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+.admin-footer p { margin: 0; font-size: 0.9rem; }
+
+
+/* --- Quiz Page Specific Layout --- */
+
+/* Wrapper for the two main columns */
+.quiz-page-wrapper {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    padding: var(--wrapper-padding);
+    gap: var(--wrapper-gap);
+    align-items: flex-start;
+}
+
+/* Left Column: Main Quiz Question Area (Unchanged) */
+.quiz-main-area {
+    flex-grow: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Right Column: Status Sidebar */
+.quiz-status-sidebar {
+    width: var(--status-sidebar-width);
+    flex-shrink: 0;
+    position: sticky;
+    top: calc(var(--header-height) + var(--wrapper-padding));
+    /* Correct Max Height Calculation: Ensure it fits viewport */
+    max-height: calc(100vh - var(--header-height) - var(--footer-height) - (2 * var(--wrapper-padding)));
+    /* --- Layout changes for internal scrolling --- */
+    display: flex;
+    flex-direction: column; /* Stack timer and status vertically */
+    gap: var(--wrapper-gap); /* Use consistent gap */
+    /* Removed overflow-y: auto; -> will be applied internally */
+}
+
+
+/* --- Styling for Elements within Columns --- */
+
+/* General Content Card Style (Unchanged) */
+.content-card {
+    background-color: var(--card-bg);
+    border-radius: 12px;
+    box-shadow: var(--card-shadow);
+    padding: 24px;
+    border-top: 5px solid var(--primary-color);
+}
+.content-card h2, .content-card h3 {
+    color: var(--primary-color);
+    margin-bottom: 16px;
+    text-align: center;
+    font-weight: 600;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.content-card h3 { font-size: 1.1rem; margin-bottom: 10px;} /* Adjusted H3 */
+
+/* Question Display Card Specifics (Unchanged) */
+.question-display-card { padding-bottom: 16px; }
+.question-text { margin-bottom: 20px; font-size: 1.1rem; line-height: 1.7; color: var(--text-color); font-weight: 500; }
+.question-text .q-number { font-weight: 700; margin-right: 8px; color: var(--primary-color); }
+
+/* Options Styling (Unchanged) */
+.options-container { margin-bottom: 20px; }
+label.option { display: block; margin: 10px 0; padding: 12px 15px; border: 1px solid #d1d5db; border-radius: 8px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease; font-size: 1rem; }
+label.option:hover { background-color: #f9fafb; border-color: var(--accent-color); }
+label.option input[type="radio"] { margin-right: 12px; vertical-align: middle; accent-color: var(--primary-color); }
+.option-letter { font-weight: 600; margin-right: 5px; }
+.option-text { vertical-align: middle; }
+
+
+/* Action Buttons Area (Clear, Prev/Next) (Unchanged) */
+.action-buttons-area { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; padding-top: 16px; border-top: 1px solid #e2e8f0; }
+.navigation-buttons { display: flex; gap: 10px; }
+
+/* General Action Button Style (Unchanged) */
+.action-button { display: inline-block; padding: 10px 20px; border-radius: 6px; cursor: pointer; font-weight: 500; font-size: 0.95rem; text-decoration: none; text-align: center; border: none; transition: var(--transition); }
+.action-button:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+.action-button:disabled { background-color: #e5e7eb !important; color: #9ca3af !important; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+
+/* Specific Button Styles (Unchanged) */
+.action-button.clear-btn { background-color: var(--danger-color); color: white; }
+.action-button.clear-btn:hover { background-color: var(--danger-hover); }
+.action-button.nav-btn { background-color: var(--secondary-color); color: white; }
+.action-button.nav-btn:hover:not(:disabled) { background-color: #475569; }
+.action-button.submit-btn { background-color: var(--success-color); color: white; padding: 12px 24px; font-size: 1rem; }
+.action-button.submit-btn:hover:not(:disabled) { background-color: var(--success-hover); }
+.action-button.submit-btn:disabled { font-style: italic; }
+
+/* Submit Form Area (Unchanged) */
+.submit-form-area { text-align: center; margin-top: 10px; }
+
+
+/* ----- Status Sidebar Content Styling Changes ----- */
+
+/* Timer Container - Reduced Size */
+.timer-container.content-card {
+    padding: 15px; /* Reduced padding */
+    padding-bottom: 10px;
+    flex-shrink: 0; /* Prevent timer from shrinking if status area grows */
+}
+.timer {
+    font-size: 1.8rem; /* Reduced timer font size */
+    font-weight: 700;
+    color: var(--text-color);
+    margin-top: 0; /* Reduced margin */
+}
+
+/* Question Status Area - Flex grow and internal scroll */
+.question-status-area.content-card {
+    padding-top: 15px; /* Reduced top padding */
+    flex-grow: 1; /* Allow this card to take remaining space */
+    /* --- Important: Make this area scrollable internally --- */
+    display: flex; /* Use flexbox for internal layout */
+    flex-direction: column;
+    overflow: hidden; /* Hide overflow on the card itself */
+}
+.status-indicators {
+    margin-bottom: 10px; /* Reduced margin */
+    font-size: 0.8rem; /* Smaller legend text */
+    color: var(--text-light);
+    flex-shrink: 0; /* Prevent indicators from shrinking */
+}
+.status-indicator { display: flex; align-items: center; margin-bottom: 4px; }
+.status-indicator .color-box { width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; border: 1px solid rgba(0,0,0,0.1); }
+
+/* Question Status Buttons Container - Now scrolls */
+.question-status-container {
+    /* Removed border, padding is now handled by parent */
+    flex-grow: 1; /* Allow container to fill the rest of status-area card */
+    overflow-y: auto; /* THIS is where the scrollbar appears if buttons overflow */
+    text-align: center;
+    /* Removed background-color, use parent card's bg */
+    padding: 5px; /* Add slight internal padding */
+}
+
+/* Question Status Buttons (Unchanged appearance) */
+.question-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 4px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.question-status:hover { transform: scale(1.1); }
+.status-grey { background-color: var(--grey-color); }
+.status-red { background-color: var(--danger-color); }
+.status-green { background-color: var(--success-color); }
+.question-status.current { border-color: var(--primary-color); transform: scale(1.1); box-shadow: 0 0 8px rgba(30, 58, 138, 0.4); }
+
+/* Error state card (Unchanged) */
+.error-card { text-align: center; }
+.error-card h2 { color: var(--danger-color); border: none; }
+.error-card p { color: var(--text-light); margin-bottom: 20px; }
+.empty-sidebar { background-color: transparent; box-shadow: none; border: none; }
+
+/* --- Responsive Design --- */
+@media screen and (max-width: 992px) {
+    /* Tablet and smaller - Stack layout */
+    .quiz-page-wrapper { flex-direction: column; padding: 16px; gap: 16px; }
+    .quiz-main-area { order: 2; }
+    .quiz-status-sidebar {
+        order: 1;
+        width: 100%;
+        position: static; /* Remove stickiness */
+        max-height: none; /* Remove height limit */
+        flex-direction: row; /* Layout timer/status horizontally */
+        flex-wrap: wrap;
+        align-items: stretch;
+        gap: 16px; /* Use consistent gap */
+    }
+    .timer-container, .question-status-area {
+        flex: 1 1 250px;
+        min-width: 250px;
+        /* Ensure content card style persists */
+        background-color: var(--card-bg);
+        border-radius: 12px;
+        box-shadow: var(--card-shadow);
+        padding: 15px; /* Adjust padding */
+        border-top: 5px solid var(--primary-color);
+    }
+     .question-status-area {
+         overflow: hidden; /* Reset overflow for horizontal layout */
+         display: flex;
+         flex-direction: column;
+     }
+    .question-status-container {
+         height: 120px; /* Fixed height might be needed again here */
+         flex-grow: 0; /* Do not allow grow in horizontal layout */
+         overflow-y: auto; /* Keep scroll */
+     }
+}
+
+@media screen and (max-width: 768px) {
+    /* Inherits stacking */
+    .timer-container, .question-status-area {
+         min-width: none;
+         flex-basis: auto;
+         width: 100%; /* Stack timer and status fully */
+         margin-bottom: 16px; /* Add margin when stacked */
+     }
+     .quiz-status-sidebar { gap: 0; } /* Remove gap when fully stacked */
+     .question-status-area { margin-bottom: 0; }
+     .question-status-container { height: 150px; } /* Adjust height */
+
+    .question-display-card { padding: 16px; }
+    .question-text { font-size: 1rem; }
+    label.option { padding: 10px 12px; font-size: 0.95rem;}
+    .action-buttons-area { flex-direction: column; gap: 15px; align-items: stretch; }
+    .navigation-buttons { justify-content: space-between; width: 100%; }
+    .action-button { width: auto; flex-grow: 1; }
+    .action-button.clear-btn { width: 100%; }
+    .submit-form-area { margin-top: 20px; }
+}
+
+@media screen and (max-width: 480px) {
+    .admin-header, .admin-footer { padding: 0 16px; }
+    .logo { height: 40px; }
+    .back-btn { padding: 8px 14px; }
+    .quiz-page-wrapper { padding: 10px; gap: 10px; }
+    .content-card, .timer-container.content-card, .question-status-area.content-card { padding: 12px; } /* Consistent padding */
+    .content-card h2, .content-card h3 { font-size: 1.1rem; margin-bottom: 12px; padding-bottom: 8px; }
+    .timer { font-size: 1.6rem; }
+    .question-text { font-size: 0.95rem; }
+    label.option { padding: 8px 10px; font-size: 0.9rem; margin: 8px 0;}
+    .action-buttons-area { gap: 10px; }
+    .action-button { padding: 8px 12px; font-size: 0.9rem; }
+    .action-button.submit-btn { padding: 10px 18px; }
+    .question-status { width: 32px; height: 32px; margin: 3px; font-size: 0.85rem; }
+    .status-indicators { font-size: 0.8rem; }
+    .status-indicator .color-box { width: 12px; height: 12px; }
+    .question-status-container { height: 120px; } /* Adjust height */
+}
