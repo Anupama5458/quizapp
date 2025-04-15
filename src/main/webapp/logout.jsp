@@ -29,8 +29,6 @@
             </form>
         </div>
     </div>
-    <div class="footer">
-        <p>&copy; 2025 Your Company Name</p>
-    </div>
+
 </body>
 </html>

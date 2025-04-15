@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.yash.quizapplication.domain.QuizQuestion" %>
-<%-- Assuming QuizMetadata might be useful or passed for context --%>
 <%@ page import="com.yash.quizapplication.domain.QuizMetadata" %>
 
 <!DOCTYPE html>
@@ -10,8 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Quiz Questions</title>
-    <%-- Link to the NEW final CSS file --%>
-    <link rel="stylesheet" href="view_quiz.css">
+    <link rel="stylesheet" href="view_quiz.css"> <%-- Link to the CSS file --%>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -24,8 +22,7 @@
                     <span class="admin-name">Admin</span>
                 </div>
                 <div class="header-actions">
-                    <%-- Use "back-btn" class to match quiz_list.css styling --%>
-                    <a href="quiz_list.jsp" class="back-btn">Back to Quiz List</a>
+                    <%-- "Back to Quiz List" button REMOVED from here --%>
                     <form action="LogoutServlet" method="post" class="logout-form">
                         <input type="hidden" name="logoutRequest" value="true">
                         <input type="hidden" name="dashboardURL" value="admin.jsp">
@@ -41,25 +38,19 @@
             <aside class="admin-sidebar">
                 <nav class="sidebar-nav">
                     <a href="generate_quiz.jsp" class="sidebar-link">
-                        <span class="link-icon">🧩</span>
-                        Generate New Quiz
+                        <span class="link-icon">🧩</span> Generate New Quiz
                     </a>
-                    <%-- Add 'active' class since viewing a quiz relates to editing/managing them --%>
-                    <a href="quiz_list.jsp" class="sidebar-link active">
-                        <span class="link-icon">✏️</span>
-                        Edit Existing Quiz
+                    <a href="quiz_list.jsp" class="sidebar-link active"> <%-- Active link --%>
+                        <span class="link-icon">✏️</span> Edit Existing Quiz
                     </a>
                     <a href="libraryDashboard.jsp" class="sidebar-link">
-                        <span class="link-icon">📚</span>
-                        Manage Library
+                        <span class="link-icon">📚</span> Manage Library
                     </a>
                     <a href="AdminActivityServlet" class="sidebar-link">
-                        <span class="link-icon">📊</span>
-                        View Activity
+                        <span class="link-icon">📊</span> View Activity
                     </a>
                     <a href="AdminApprovalServlet" class="sidebar-link">
-                        <span class="link-icon">👥</span>
-                        Approve/Deny Registrations
+                        <span class="link-icon">👥</span> Approve/Deny Registrations
                     </a>
                 </nav>
             </aside>
@@ -67,51 +58,44 @@
             <%-- Main content structure similar to quiz_list.jsp --%>
             <main class="admin-main-content">
                 <%
-
                    QuizMetadata quizMetadata = (QuizMetadata) request.getAttribute("quizMetadata");
+                   // Use metadata title preferably, fall back to request attribute if needed
                    String quizTitle = (quizMetadata != null) ? quizMetadata.getQuizTitle() : (String) request.getAttribute("quizTitle");
-                   if (quizTitle == null) quizTitle = "Selected Quiz";
+                   if (quizTitle == null || quizTitle.trim().isEmpty()) {
+                       quizTitle = "Selected Quiz"; // Default if title is missing
+                   }
                 %>
                 <%-- Page Header Section --%>
                 <div class="page-header">
                     <h1>View Quiz Details</h1>
-                     <p>Displaying questions for: <strong><%= quizTitle %></strong></p>
+                    <p>Displaying questions for: <strong><%= quizTitle %></strong></p>
                 </div>
 
                 <%-- Content Card for the questions table --%>
                 <div class="content-card">
                     <%-- Card Header --%>
                     <div class="card-header">
-                        <span class="card-icon"></span> <%-- View icon --%>
+                        <span class="card-icon">👁️</span> <%-- View icon --%>
                         <h2>Quiz Questions</h2>
                     </div>
 
                     <%-- Card Content holds the table --%>
                     <div class="card-content">
                         <%
-                            // Retrieve the list of questions
                             List<QuizQuestion> questions = (List<QuizQuestion>) request.getAttribute("questions");
                         %>
 
-                        <%-- Optional: Add messages if needed (e.g., if loading failed) --%>
-                        <%-- <% String message = request.getParameter("msg"); %> --%>
-                        <%-- <% if ("load_error".equals(message)) { %>
-                            <div class="alert error-message"> ... Error loading questions ... </div>
-                        <% } %> --%>
-
-                        <%-- Table Wrapper identical to quiz_list.jsp --%>
                         <div class="table-wrapper">
-                            <%-- Use "quiz-table" class to match quiz_list.css styling --%>
                             <table class="quiz-table">
                                 <thead>
                                     <tr>
-                                        <th>#</th> <%-- Use '#' instead of 'Quiz ID' --%>
+                                        <th>#</th>
                                         <th>Question</th>
                                         <th>Option A</th>
                                         <th>Option B</th>
                                         <th>Option C</th>
                                         <th>Option D</th>
-                                        <th>Correct Answer</th> <%-- Keep specific header --%>
+                                        <th>Correct Answer</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -120,40 +104,36 @@
                                         for(QuizQuestion q: questions){ %>
                                         <tr>
                                             <td><%= count++ %></td>
-                                            <td><%= q.getQuestionText() %></td>
-                                            <td><%= q.getOptionA() %></td>
-                                            <td><%= q.getOptionB() %></td>
-                                            <td><%= q.getOptionC() %></td>
-                                            <td><%= q.getOptionD() %></td>
-                                            <%-- Add a specific class for potentially different styling --%>
-                                            <td class="correct-answer-cell"><%= q.getCorrectOption() %></td>
+                                            <td><%= q.getQuestionText() != null ? q.getQuestionText() : "" %></td>
+                                            <td><%= q.getOptionA() != null ? q.getOptionA() : "" %></td>
+                                            <td><%= q.getOptionB() != null ? q.getOptionB() : "" %></td>
+                                            <td><%= q.getOptionC() != null ? q.getOptionC() : "" %></td>
+                                            <td><%= q.getOptionD() != null ? q.getOptionD() : "" %></td>
+                                            <td class="correct-answer-cell"><%= q.getCorrectOption() != null ? q.getCorrectOption() : "" %></td>
                                         </tr>
-                                    <% }
+                                    <% } // End for loop
                                     } else { %>
                                         <tr>
-                                            <%-- Adjust colspan to match new number of columns --%>
                                             <td colspan="7" class="no-quizzes">No questions found for this quiz.</td>
                                         </tr>
-                                    <% } %>
+                                    <% } // End if-else %>
                                 </tbody>
                             </table>
                         </div>
+                    </div> <%-- End card-content --%>
+                </div> <%-- End content-card --%>
 
-                        <%-- Optional: Add card actions if needed --%>
-                        <%-- <div class="card-actions"> ... </div> --%>
-                    </div>
+                <%-- Page Actions Area (Button moved here) --%>
+                <div class="page-actions">
+                    <a href="quiz_list.jsp" class="back-btn">Back to Quiz List</a>
                 </div>
-            </main>
-        </div>
 
-        <%-- Use the same footer include as quiz_list.jsp for consistency --%>
-        <%-- If you want the BLACK footer from previous request, use:
-        <footer class="admin-footer">
-            <p>© 2025 Yash Technologies Pvt. Ltd. All rights reserved.</p>
-        </footer>
-        Make sure the CSS below includes .admin-footer styling if you use this. --%>
+            </main> <%-- End admin-main-content --%>
+        </div> <%-- End dashboard-wrapper --%>
+
+        <%-- Footer Include --%>
         <jsp:include page="includes/footer.jsp" />
 
-    </div>
+    </div> <%-- End admin-container --%>
 </body>
 </html>
